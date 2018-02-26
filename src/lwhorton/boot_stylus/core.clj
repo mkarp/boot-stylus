@@ -92,7 +92,7 @@
             in-files (c/input-files diff)
             ;; compile all css, but exclude node_modules and cljsjs paths
             css (c/by-ext [".css"] (c/by-re [#"cljsjs" #"^node_modules"] in-files true))]
-        (println "compiling" (apply str (map #(str (.getPath (c/tmp-file %)) "\t") css)))
+        (when verbose (println "Compiling" (apply str (map #(str (.getPath (c/tmp-file %)) "\t") css))))
         (reset! prev fileset)
 
         (when (seq css)
