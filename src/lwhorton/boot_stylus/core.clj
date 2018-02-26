@@ -7,8 +7,8 @@
     [clojure.java.shell :as sh]
     [boot.util :as u]
     [me.raynes.conch :as conch]
-    [degree9.boot-exec :as exec]
     [degree9.boot-npm :refer [npm]]
+    [degree9.boot-exec :refer [exec]]
     [lwhorton.boot-stylus.generator :as generator]
     [clojure.java.io :refer [reader writer]]
     )
@@ -65,12 +65,11 @@
                 ;; in order for stylus to not throw, the file needs to exist
                 (doto out-file io/make-parents c/touch)
                 (when verbose (println (str "Compiling " in-path " to " out-path "...")))
-                (binding [u/*sh-dir* (.getPath (c/tmp-dir stylus-exec))]
-                  (apply u/dosh (concat
-                                  ["./node_modules/stylus/bin/stylus"]
-                                  ["-o"
-                                   (.getPath out-file)
-                                   (.getPath in-file)])))))))
+                (exec :process "node"
+                      :arguments [(.getPath (c/tmp-file stylus-exec))
+                                  "-o"
+                                  (.getPath out-file)
+                                  (.getPath in-file)])))))
 
         (-> fileset
             (c/add-resource tmp)
