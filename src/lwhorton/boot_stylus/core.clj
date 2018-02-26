@@ -7,8 +7,8 @@
     [clojure.java.shell :as sh]
     [boot.util :as u]
     [me.raynes.conch :as conch]
-    [degree9.boot-npm :as npm]
     [degree9.boot-exec :as exec]
+    [degree9.boot-npm :refer [npm]]
     [lwhorton.boot-stylus.generator :as generator]
     [clojure.java.io :refer [reader writer]]
     )
@@ -169,10 +169,10 @@
         (-> fs
             (c/add-source tmp)
             (c/commit!))))
-    (npm/npm :install {:postcss "5.0.21"
-                       :postcss-modules "0.5.0"
-                       :stylus "0.54.5"}
-             :cache-key ::cache)))
+    (npm :install ["postcss@5.0.21"
+                   "postcss-modules@0.5.0"
+                   "stylus@0.54.5"]
+         :cache-key ::cache)))
 
 (deftask stylus
   "Compile all .styl files into clojure modules following css-modules syntax."
