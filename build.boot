@@ -1,10 +1,10 @@
-(def +version+ "0.0.4-SNAPSHOT")
+(def +version+ "0.0.4")
 
 (set-env!
   :resource-paths #{"src"}
   :dependencies '[
                   [org.clojure/clojure "1.8.0" :scope "provided"]
-                  [degree9/boot-npm "1.10.1-SNAPSHOT"]
+                  [mkarp/degree9-boot-npm "1.10.1"]
                   [me.raynes/conch "0.8.0"]
                   ]
   :repositories #(conj %
@@ -45,11 +45,10 @@
     (push :repo "artifactory")))
 
 (task-options!
-  pom {:project 'lwhorton/boot-stylus
+  pom {:project 'mkarp/lwhorton-boot-stylus
        :version +version+
        :description "Boot task to compile stylus files to css-module clojure namespaces."
-       :url "https://github.com/lwhorton/boot-stylus"
-       :scm {:url "https://github.com/lwhorton/boot-stylus"}
+       :url "https://github.com/mkarp/lwhorton-boot-stylus"
+       :scm {:url "https://github.com/mkarp/lwhorton-boot-stylus"}
        }
   )
-
