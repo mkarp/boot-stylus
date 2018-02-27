@@ -168,9 +168,9 @@
         (-> fs
             (c/add-source tmp)
             (c/commit!))))
-    (npm/npm :install {:postcss "5.0.21"
-                       :postcss-modules "0.5.0"
-                       :stylus "0.54.5"}
+    (npm/npm :install ["postcss@5.0.21"
+                       "postcss-modules@0.5.0"
+                       "stylus@0.54.5"]
              :cache-key ::cache)))
 
 (deftask stylus

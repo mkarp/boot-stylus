@@ -4,7 +4,7 @@
   :resource-paths #{"src"}
   :dependencies '[
                   [org.clojure/clojure "1.8.0" :scope "provided"]
-                  [degree9/boot-npm "1.4.0"]
+                  [degree9/boot-npm "1.10.1-SNAPSHOT"]
                   [me.raynes/conch "0.8.0"]
                   ]
   :repositories #(conj %
