@@ -34,6 +34,9 @@
     (doto src io/make-parents (spit hash))
     hash))
 
+(def windows?
+  (.startsWith (.toLowerCase (System/getProperty "os.name")) "windows"))
+
 (deftask compile-stylus
   "Compile all .styl files in the fileset into .css files"
   []
@@ -66,7 +69,8 @@
                 (when verbose (println (str "Compiling " in-path " to " out-path "...")))
                 (binding [u/*sh-dir* (.getPath (c/tmp-dir stylus-exec))]
                   (apply u/dosh (concat
-                                  ["./node_modules/stylus/bin/stylus"]
+                                  (if windows? ["cmd" "/c" "node"])
+                                  [(.getPath (c/tmp-file stylus-exec))]
                                   ["-o"
                                    (.getPath out-file)
                                    (.getPath in-file)])))))))
