@@ -1,10 +1,10 @@
-(def +version+ "0.0.4")
+(def +version+ "0.0.5")
 
 (set-env!
   :resource-paths #{"src"}
   :dependencies '[
                   [org.clojure/clojure "1.8.0" :scope "provided"]
-                  [mkarp/degree9-boot-npm "1.10.1"]
+                  [mkarp/degree9-boot-npm "1.10.2"]
                   [me.raynes/conch "0.8.0"]
                   ]
   :repositories #(conj %
