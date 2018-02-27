@@ -8,7 +8,6 @@
     [boot.util :as u]
     [me.raynes.conch :as conch]
     [degree9.boot-npm :as npm]
-    [degree9.boot-exec :as exec]
     [lwhorton.boot-stylus.generator :as generator]
     [clojure.java.io :refer [reader writer]]
     )
