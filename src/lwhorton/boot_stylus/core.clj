@@ -22,7 +22,7 @@
   [out-path]
   (let [no-extension (subs out-path 0 (.lastIndexOf out-path "."))
         hyphenated (.replaceAll no-extension "_" "-")]
-    (.replaceAll hyphenated "/" ".")))
+    (.replaceAll hyphenated "[/|\\\\]" ".")))
 
 (defn- uuid []
   (subs (str (java.util.UUID/randomUUID)) 0 5))
@@ -44,7 +44,7 @@
             ;; find the stylus executable in our fileset, then run our stylus
             ;; files through the executable from the parent dir so that paths
             ;; to ./node_modules and any require('../relative-path') works
-            stylus-mods (c/by-re [#"^node_modules/stylus"] (c/input-files fileset))
+            stylus-mods (c/by-re [#"^node_modules[/|\\\\]stylus"] (c/input-files fileset))
             stylus-exec (first (c/by-name ["stylus"] stylus-mods))
             in-files (c/input-files diff)
             styl-files (c/by-ext [".styl"] (c/by-re [#"^node_modules"] in-files true))]
